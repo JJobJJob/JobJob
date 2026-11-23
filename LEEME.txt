@@ -1,0 +1,12 @@
+JobJob PWA – sube TODA esta carpeta tal cual a tu hosting con HTTPS (Netlify, Vercel, Cloudflare Pages, GitHub Pages, etc.):
+
+  index.html
+  manifest.json
+  icons/ (icon.svg, icon-192.png, icon-512.png, icon-maskable-512.png, apple-touch-icon.png)
+
+Enlaces (cambia tudominio.com):
+  Clientes: https://tudominio.com/
+  Técnicos: https://tudominio.com/?modo=tecnico
+  Admin:    https://tudominio.com/?modo=admin   (PIN de ejemplo: 1234)
+
+WhatsApp: en index.html busca  var WA_NUMERO = "";  y pon tu número con lada país, ej. "526181234567".
