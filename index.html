@@ -46,7 +46,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;back
     </div>
     <nav id="tabs" class="hidden w-full sm:w-auto rounded-xl border border-[#E5E0D5] bg-[#F4F2ED] p-1 text-sm font-semibold">
       <button data-tab="cliente" class="flex-1 sm:flex-none px-3 py-2 rounded-lg">Clientes</button>
-      <button data-tab="panel" class="flex-[1.6] sm:flex-none px-3 py-2 rounded-lg">Soy Técnico (Panel)</button>
+      <button data-tab="panel" class="flex-none px-3 py-2 rounded-lg" title="Soy técnico" aria-label="Soy técnico">🔨<span class="hidden sm:inline"> Soy técnico</span></button>
       <button data-tab="admin" class="flex-none px-3 py-2 rounded-lg text-xs">🔒 Admin</button>
     </nav>
   </div>
@@ -123,7 +123,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;back
 <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-max max-w-[90vw] text-center bg-stone-800 text-white text-sm font-medium rounded-full px-4 py-2 shadow-lg"></div>
 
 <script>
-var KEY = "jobjob_v1", PIN = "6767", FEE = 80, SUB = 100;
+var KEY = "jobjob_v1", PIN = "1234", FEE = 80, SUB = 100;
 // WhatsApp que recibe los pedidos (con lada país, ej. "526181234567"). Vacío = el cliente elige el contacto.
 var WA_NUMERO = "";
 var TRADES = ["Plomería","Electricidad","Climas","Herrería"];
@@ -164,7 +164,7 @@ function getMode(){
 }
 var MODE = getMode();
 function modeTab(){ return MODE==="admin" ? "admin" : MODE==="tecnico" ? "panel" : "cliente"; }
-function allowed(t){ return t==="cliente" || (MODE!=="" && t==="panel") || (MODE==="admin" && t==="admin"); }
+function allowed(t){ return t==="cliente" || t==="panel" || (MODE==="admin" && t==="admin"); }
 S.tab = modeTab();
 
 var $ = function(q){return document.querySelector(q)};
@@ -430,7 +430,7 @@ function paintTabs(){
     var on = b.dataset.tab===S.tab;
     b.className = b.className.replace(/\s*(hidden|bg-\[#111111\]|text-white|text-stone-500|hover:text-stone-900|transition)/g,"") + " transition " + (on ? "bg-[#111111] text-white" : "text-stone-500 hover:text-stone-900") + (allowed(b.dataset.tab) ? "" : " hidden");
   });
-  var nav = $("#tabs"); nav.classList.toggle("hidden", MODE===""); nav.classList.toggle("flex", MODE!=="");
+  var nav = $("#tabs"); nav.classList.remove("hidden"); nav.classList.add("flex");
   $("#reset").parentElement.classList.toggle("hidden", MODE!=="admin");
   ["cliente","panel","admin"].forEach(function(v){ $("#view"+v.charAt(0).toUpperCase()+v.slice(1)).classList.toggle("hidden", S.tab!==v); });
   $("#filterBar").classList.toggle("hidden", S.tab!=="cliente");
